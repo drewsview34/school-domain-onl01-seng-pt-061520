@@ -1,6 +1,5 @@
 # code here!
 class School
-  
   attr_accessor :name, :roster
   
   def initialize(name)
@@ -8,7 +7,21 @@ class School
     @roster = {}
   end
   
-  def add_student(name)
-    roster << name
-  end 
+  def add_student(student, grade)
+    roster[grade] ||= []
+    roster[grade] << student
+  end
+
+  def grade(students_in_this_grade)
+    roster[students_in_this_grade]
+  end
+  
+  def sort
+    sorted = {}
+    roster.each do |grade, students|
+      sorted[grade] = students.sort
+    end
+    sorted
+  end
+  
 end
